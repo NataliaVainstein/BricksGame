@@ -1,0 +1,9 @@
+# ignore all object files
+*.o
+*.out
+
+# ignore brickGame files
+brickGame
+
+# ignore depends file
+depends
