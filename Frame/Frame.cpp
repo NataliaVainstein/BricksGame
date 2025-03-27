@@ -75,15 +75,3 @@ const sf::Vector2f& Frame::frameDimensions() const
 {
 		return m_frameDimensions;
 }
-
-/*float Frame::height() const
-{
-	return m_height;
-}*/
-
-
-/*float Frame::width() const
-{
-	return m_width;
-}*/
-

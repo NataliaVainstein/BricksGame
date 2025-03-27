@@ -43,8 +43,6 @@ void GameComponents::collide()
 	int points = 0;
 	m_bricks.collide(m_ball, Bricks::_ALL_BRICKS, points);
 	m_bricks.collide(m_pedal, Bricks::_HORIZONTAL_FRAME_BRICKS_, points);
-//	Brick* b = m_bricks.getBrick(2);
-	//m_ball.collide(*b);
 	m_ball.collide(m_pedal, points);
 	m_score.add(points);
 }
@@ -69,21 +67,6 @@ void GameComponents:: run()
 		handleEvent(e);
 		collide();
 		animate();	
-		//	Brick* b = m_bricks.getBrick(2);
-		//	m_pedal.collide(*b);
-		//	m_ball.collide(*b);
-		//m_pedal.animate();
-		//m_bricks.draw(m_frame);
-		
-		
-		//m_ball.animate();
-		//m_ball.draw(m_frame);
-		//m_pedal.draw(m_frame);
-			//m_frame.display();
-		//	m_pedal.draw(m_frame);
-		//	m_ball.collide(m_pedal);
-			//	m_frame.display();
-	//	m_frame.clear();
 	}
 	
 }

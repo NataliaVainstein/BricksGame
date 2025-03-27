@@ -53,9 +53,6 @@ Bricks::Bricks(sf::Vector2f& _frameDimension)
 	Brick*  brRight = new StableBrick(_frameDimension.x + 100.f,100, 800 , 0.f);
 	Brick* brTop = new StableBrick(0.5, _frameDimension.y + 100.f, 0.f, 1);
 	
-	
-	
-	//m_shapes.push_back(brButtom);
 	m_shapes.push_back(brLeft);
 	m_shapes.push_back(brRight);
 	m_shapes.push_back(brTop);

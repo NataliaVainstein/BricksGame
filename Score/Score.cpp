@@ -1,5 +1,5 @@
 #include "Score.h"
-#include <sstream>  //for ss stream
+#include <sstream>
 
 Score::Score(sf::Vector2f _position)
 :m_score(0)

@@ -53,7 +53,6 @@ Collision::COLLISION_TYPE Pedal::collide(Collision& _collideWith, int& _addPoint
 	if((isRightCollision(thisPos.x, thisSize.x, collideWithPos.x)))
 	{
 		m_xOffset = -1;
-		//setPosition(collideWithPos.x - thisSize.x, thisPos.y);
 	
 		return X_DIRECTION;
 	}
@@ -61,10 +60,10 @@ Collision::COLLISION_TYPE Pedal::collide(Collision& _collideWith, int& _addPoint
 	if(isLeftCollision(thisPos.x,collideWithPos.x, collideWithSize.x, thisSize.x))
 	{
 		m_xOffset = 1;
-		//setPosition(collideWithPos.x + collideWithSize.x, thisPos.y);
 		
 		return X_DIRECTION;
 	}
+	
 	return NO_COLLISION;
 }
 
@@ -123,28 +122,3 @@ void Pedal::handleEvent(sf::Event _event)
 			break;
 	}
 }
-/*
-void Pedal::pollEvents(Frame& _frame)
-{			               
-   	sf::Event event; 
-   	
-	while (m_frame.pollEvent(event))
-	{
-				switch(event.key.code)
-				{
-					case sf::Keyboard::key::Right
-						m_pedal.move(sf::Vector2f(1, 0));
-						break;
-					case sf::Keyboard::key::Right
-						 m_pedal.move(sf::Vector2f(1, 0));
-						break;
-					default:
-						break;
-				}
-				break;
-			default:
-				break;
-		}
-	} 
-}
-*/
