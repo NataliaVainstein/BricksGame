@@ -9,7 +9,7 @@ Score::Score(sf::Vector2f _position)
 ,m_font()
 ,m_scoreText(m_scoreString, m_font)
 {
-	m_font.loadFromFile("/usr/share/fonts/truetype/freefont/FreeSans.ttf");
+	m_font.loadFromFile("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf");
 	m_scoreText.setCharacterSize(SCORE_TEXT_SIZE);
 	m_scoreText.setFillColor(sf::Color::Black);
 	m_scoreText.setPosition(_position);
