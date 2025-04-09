@@ -12,7 +12,7 @@
 class GameComponents
 {
 public: 	
-	GameComponents(sf::Vector2f& _frameDimensions, sf::Vector2f& _framePossition);
+	GameComponents(sf::Vector2f& _frameDimensions, sf::Vector2f& _framePosition);
 	~GameComponents();
 	
 	void draw();

@@ -1,18 +1,16 @@
 #include "Ball.h"
-#include <iostream> /*for test*/
 
-
-Ball::Ball(float _radius,float _xPossition,float _yPossition,float _xspeed,float _yspeed)
+Ball::Ball(float _radius,float _xPosition,float _yPosition,float _xspeed,float _yspeed)
 :sf::CircleShape(_radius)
 ,m_radius(_radius)
-,m_xpossition(_xPossition)
-,m_ypossition(_yPossition)
+,m_xposition(_xPosition)
+,m_yposition(_yPosition)
 ,m_xspeed(_xspeed)
 ,m_yspeed(_yspeed)
 ,m_speed(_xspeed, _yspeed)
 ,m_squereSize(_radius * 2, _radius * 2)
 {
-	sf::Vector2f v(_xPossition, _yPossition);
+	sf::Vector2f v(_xPosition, _yPosition);
 	move(v);
     setFillColor(sf::Color::Yellow);
 }

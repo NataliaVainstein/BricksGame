@@ -41,17 +41,21 @@ private:
 };
 	
 
-static const float OFFSET  = 15.f;
-static const float H  = 10.f;
-static const float BRICK_HEIGHT = 40;
-static const float BRICK_WIDTH = 100;
+constexpr float OFFSET  = 15.f;
+constexpr float OFFSET_Y = 20.f;
+constexpr float BRICKS_INTERVAL  = 10.f;
+constexpr float BRICK_HEIGHT = 40.f;
+constexpr float BRICK_WIDTH = 100.f;
+constexpr float LEFT_STABLE_BRICK_Y_POSITION = 0.f;
+constexpr float RIGHT_STABLE_BRICK_Y_POSITION = 0.f;
+constexpr float TOP_STABLE_BRICK_X_POSITION = 0.f;
 
 Bricks::Bricks(sf::Vector2f& _frameDimension)
 {	
 
-	Brick*  brLeft = new StableBrick(_frameDimension.x + 100.f, 100, -100.f, 0.f);
-	Brick*  brRight = new StableBrick(_frameDimension.x + 100.f,100, 800 , 0.f);
-	Brick* brTop = new StableBrick(0.5, _frameDimension.y + 100.f, 0.f, 1);
+	Brick*  brLeft = new StableBrick(_frameDimension.x, BRICK_WIDTH, -BRICK_WIDTH, LEFT_STABLE_BRICK_Y_POSITION);
+	Brick*  brRight = new StableBrick(_frameDimension.x,BRICK_WIDTH, _frameDimension.y, RIGHT_STABLE_BRICK_Y_POSITION);
+	Brick* brTop = new StableBrick(BRICK_HEIGHT, _frameDimension.y, TOP_STABLE_BRICK_X_POSITION, -BRICK_HEIGHT);
 	
 	m_shapes.push_back(brLeft);
 	m_shapes.push_back(brRight);
@@ -63,7 +67,7 @@ Bricks::Bricks(sf::Vector2f& _frameDimension)
 	int numLine = 0; 
 	float posX = OFFSET;
 	bool readLineRes = true;
-	float posY = H + numLine * (H + BRICK_HEIGHT);
+	float posY = OFFSET_Y + BRICKS_INTERVAL + numLine * (BRICKS_INTERVAL + BRICK_HEIGHT);
 	 std::string brickLine;
 	
 	do{
@@ -78,13 +82,13 @@ Bricks::Bricks(sf::Vector2f& _frameDimension)
 					addBrick(*it, posX, posY);
 				}
 				
-				posX += BRICK_WIDTH + H;
+				posX += BRICK_WIDTH + BRICKS_INTERVAL;
 			}
 		}
 		
 		posX = OFFSET;
 		++numLine;
-		posY = H + numLine * (H + BRICK_HEIGHT);
+		posY = OFFSET_Y + BRICKS_INTERVAL + numLine * (BRICKS_INTERVAL + BRICK_HEIGHT);
 	}while(readLineRes);
 		
 }

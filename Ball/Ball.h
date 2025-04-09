@@ -11,7 +11,7 @@
 class Ball:public Animatable, public Drawable, public Collision, public sf::CircleShape
 {
 public:
-	Ball(float _radius,float _xPossition,float _yPossition,float _xspeed,float _yspeed);
+	Ball(float _radius,float _xPosition,float _yPosition,float _xspeed,float _yspeed);
 	~Ball();
 
 	void animate();
@@ -30,8 +30,8 @@ private:
 	
 private:	
 	float m_radius;
-	float m_xpossition;
-	float m_ypossition;
+	float m_xposition;
+	float m_yposition;
 	float m_xspeed;
 	float m_yspeed;
 	sf::Vector2f m_speed;

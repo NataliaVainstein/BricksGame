@@ -1,6 +1,8 @@
 #include "Score.h"
 #include <sstream>
 
+constexpr float SCORE_TEXT_SIZE = 20.f;
+
 Score::Score(sf::Vector2f _position)
 :m_score(0)
 ,m_scoreString("Score: ")
@@ -8,7 +10,7 @@ Score::Score(sf::Vector2f _position)
 ,m_scoreText(m_scoreString, m_font)
 {
 	m_font.loadFromFile("/usr/share/fonts/truetype/freefont/FreeSans.ttf");
-	m_scoreText.setCharacterSize(50);
+	m_scoreText.setCharacterSize(SCORE_TEXT_SIZE);
 	m_scoreText.setFillColor(sf::Color::Black);
 	m_scoreText.setPosition(_position);
 }
