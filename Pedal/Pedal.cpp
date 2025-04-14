@@ -61,14 +61,14 @@ Collision::COLLISION_TYPE Pedal::collide(Collision& _collideWith, int& _addPoint
 	{
 		updateXOffset(PEDAL_RIGHT_COLLISION_X_OFFSET);
 	
-		return X_DIRECTION;
+		return COLLISION;
 	}
 	
 	if(isLeftCollision(thisPos.x,collideWithPos.x, collideWithSize.x, thisSize.x))
 	{
 		updateXOffset(PEDAL_LEFT_COLLISION_X_OFFSET);
 		
-		return X_DIRECTION;
+		return COLLISION;
 	}
 	
 	return NO_COLLISION;

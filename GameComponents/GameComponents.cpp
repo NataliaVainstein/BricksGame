@@ -44,7 +44,6 @@ void GameComponents::handleEvent(sf::Event _event)
 
 void  GameComponents::animate()
 {
-
 	m_ball.animate();
 	m_pedal.animate();
 }
@@ -79,5 +78,4 @@ void GameComponents:: run()
 		collide();
 		animate();	
 	}
-	
 }

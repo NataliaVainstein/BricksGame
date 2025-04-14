@@ -21,13 +21,6 @@ void Brick::draw(Frame& _frame)
 	_frame.draw(this);
 }
 
-
-
-Collision::COLLISION_TYPE Brick::collide(Collision& _collideWith, int& _addPoints)
-{
-	return NO_COLLISION; //TODO
-}
-
 const sf::Vector2f& Brick::getShapePosition() const
 {
 	return getPosition();

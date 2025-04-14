@@ -75,6 +75,8 @@ Collision::COLLISION_TYPE Ball::collide(Collision&  _collideWith,  int& _addPoin
 			m_speed.x *= xMultiplier;
 			
 		}
+
+		return COLLISION;
 	}
 	
 	return NO_COLLISION;
