@@ -8,7 +8,7 @@ CC = g++
 # 
 CPPFLAGS = $(addprefix -I,$(INC_DIRS))
 CFLAGS = -g -pedantic -ansi -Wall -Werror -DDEBUG 
-CXXFLAGS += $(CFLAGS) -std=c++03
+CXXFLAGS += $(CFLAGS) -std=c++11
 LDFLAGS = -g
 LDLIBS = -lsfml-graphics -lsfml-window -lsfml-system
 #
