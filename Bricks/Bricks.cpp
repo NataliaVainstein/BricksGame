@@ -101,6 +101,12 @@ Bricks::Bricks(sf::Vector2f& _frameDimension)
 
 Bricks::~Bricks()
 {
+	for (Brick* brick : m_shapes)
+	{
+		delete brick;
+	}
+
+	m_shapes.clear();
 }
 
 void Bricks:: addBrick(char c, int _posX, int _posY)
