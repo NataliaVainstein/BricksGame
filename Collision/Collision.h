@@ -9,6 +9,7 @@ class Collision
 public:
 	enum COLLISION_TYPE
 	{
+		COLLISION_BREAKABLE_BRICKS,
 		COLLISION,
 		NO_COLLISION
 	};

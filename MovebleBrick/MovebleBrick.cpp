@@ -21,7 +21,7 @@ Collision::COLLISION_TYPE MovebleBrick::collide(Collision& _collideWith, int& _a
 	m_hidden = true;
 	_addPoints = m_points;
 	
-	return COLLISION;
+	return COLLISION_BREAKABLE_BRICKS;
 }
 
 void MovebleBrick::draw(Frame& _frame)

@@ -8,6 +8,7 @@
 #include "Pedal.h"
 #include "Ball.h"
 #include "Score.h"
+#include "GameResult.h"
 
 class GameComponents
 {
@@ -19,8 +20,6 @@ public:
 	void handleEvent(sf::Event _event);
 	void animate();
 	void collide();
-	bool gameOver();
-	
 	void run();
 private:
 	GameComponents(const GameComponents&);
@@ -33,6 +32,8 @@ private:
 	Pedal m_pedal;
 	Score m_score;
 	sf::Vector2f& m_frameDimensions;
+	bool m_isEndOfTheGame;
+	GameResult m_gameResult;
 };
 
 #endif //__GAME_COMPONENTS__

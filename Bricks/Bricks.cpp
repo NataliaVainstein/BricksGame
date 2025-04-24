@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 #include "Ball.h"
-
+#include "Collision.h"
 
 class Drawer
 {
@@ -25,18 +25,24 @@ private:
 class Collider
 {
 public:
-	Collider(Collision& _collideWith, int& _points)
+	Collider(Collision& _collideWith, int& _points, int& _breakableBricks)
 	:m_collideWith(_collideWith)
 	,m_points(_points)
+	,m_breakableBricks(_breakableBricks)
 	{
 	}
 	void operator()(Brick* _br)
 	{
-		m_collideWith.collide(*_br, m_points);
+		if (m_collideWith.collide(*_br, m_points) == Collision::COLLISION_BREAKABLE_BRICKS)
+		{
+			--m_breakableBricks;
+		}
+
 	}
 private:
 	Collision& m_collideWith;
 	int& m_points;
+	int& m_breakableBricks;
 };
 	
 
@@ -50,6 +56,7 @@ constexpr float RIGHT_STABLE_BRICK_Y_POSITION = 0.f;
 constexpr float TOP_STABLE_BRICK_X_POSITION = 0.f;
 
 Bricks::Bricks(sf::Vector2f& _frameDimension)
+:m_breakableBricks(0)
 {	
 
 	Brick*  brLeft = new StableBrick(_frameDimension.x, BRICK_WIDTH, -BRICK_WIDTH, LEFT_STABLE_BRICK_Y_POSITION);
@@ -103,6 +110,7 @@ void Bricks:: addBrick(char c, int _posX, int _posY)
 	if(c == 'N')
 	{
 		b = new MovebleBrick(BRICK_HEIGHT, BRICK_WIDTH, _posX, _posY);
+		++m_breakableBricks;
 	}
 	if(c == 'S')
 	{
@@ -121,7 +129,7 @@ void Bricks::collide(Collision& _collideWith, Bricks::collideWithEnum _collideTy
 {
 	if(_collideType == _ALL_BRICKS)
 	{
-		std::for_each(m_shapes.begin(), m_shapes.end(), Collider(_collideWith, _points));
+		std::for_each(m_shapes.begin(), m_shapes.end(), Collider(_collideWith, _points, m_breakableBricks));
 	}
 	else
 	{
@@ -135,3 +143,13 @@ Brick* Bricks::getBrick(size_t i)
 	return m_shapes[i];
 }
 
+bool Bricks::isGameEnding(sf::Text& gameResultText)
+{
+	if (m_breakableBricks == 0)
+	{
+		gameResultText.setString("It's a win!");
+		return true;
+	}
+
+	return false;
+}
