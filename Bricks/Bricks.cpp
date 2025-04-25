@@ -1,6 +1,6 @@
 #include "Bricks.h"
 #include "StableBrick.h"
-#include "MovebleBrick.h"
+#include "MovableBrick.h"
 #include "LevelLoader.h"
 #include <string>
 #include <vector>
@@ -115,7 +115,7 @@ void Bricks:: addBrick(char c, int _posX, int _posY)
 	
 	if(c == 'N')
 	{
-		b = new MovebleBrick(BRICK_HEIGHT, BRICK_WIDTH, _posX, _posY);
+		b = new MovableBrick(BRICK_HEIGHT, BRICK_WIDTH, _posX, _posY);
 		++m_breakableBricks;
 	}
 	if(c == 'S')

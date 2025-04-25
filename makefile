@@ -1,8 +1,8 @@
 #
 TARGET=brickGame
-SOURCES=BrickGame.cpp Frame/Frame.cpp Ball/Ball.cpp Brick/Brick.cpp StableBrick/StableBrick.cpp MovebleBrick/MovebleBrick.cpp Pedal/Pedal.cpp Collision/Collision.cpp Bricks/Bricks.cpp GameComponents/GameComponents.cpp LevelLoader/LevelLoader.cpp Drawable/Drawable.cpp Animatable/Animatable.cpp HandlesEvent/HandlesEvent.cpp Score/Score.cpp GameResult/GameResult.cpp GameEnding/GameEnding.cpp
+SOURCES=BrickGame.cpp Frame/Frame.cpp Ball/Ball.cpp Brick/Brick.cpp StableBrick/StableBrick.cpp MovableBrick/MovableBrick.cpp Pedal/Pedal.cpp Collision/Collision.cpp Bricks/Bricks.cpp GameComponents/GameComponents.cpp LevelLoader/LevelLoader.cpp Drawable/Drawable.cpp Animatable/Animatable.cpp HandlesEvent/HandlesEvent.cpp Score/Score.cpp GameResult/GameResult.cpp GameEnding/GameEnding.cpp
 #
-INC_DIRS = ../include Frame Ball Brick StableBrick MovebleBrick Pedal Collision Bricks Drawer GameComponents LevelLoader Drawable Animatable HandlesEvent Score GameResult GameEnding
+INC_DIRS = ../include Frame Ball Brick StableBrick MovableBrick Pedal Collision Bricks Drawer GameComponents LevelLoader Drawable Animatable HandlesEvent Score GameResult GameEnding
 #
 CC = g++
 # 

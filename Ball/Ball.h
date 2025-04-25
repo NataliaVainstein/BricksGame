@@ -9,7 +9,7 @@
 #include <SFML/Window.hpp>
 #include "GameEnding.h"
 
-class Ball:public Animatable, public Drawable, public Collision, public sf::CircleShape, GameEnding
+class Ball:public Animatable, public Drawable, public Collision, public sf::CircleShape, public GameEnding
 {
 public:
 	Ball(float _radius,float _xPosition,float _yPosition,float _xspeed,float _yspeed, sf::Vector2f& _frameDimensions);

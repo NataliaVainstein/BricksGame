@@ -9,7 +9,7 @@ constexpr float PEDAL_HEIGHT = 40.f;
 constexpr float PEDAL_WIDTH = 150.f;
 constexpr float PEDAL_XPOSITION = 300.f;
 constexpr float PEDAL_YPOSITION = 500.f;
-constexpr float OFFSET_Y = 15.f;
+constexpr float SCORE_OFFSET_Y = 15.f;
 
 
 GameComponents::GameComponents(sf::Vector2f& _frameDimensions, sf::Vector2f& _framePosition)
@@ -17,7 +17,7 @@ GameComponents::GameComponents(sf::Vector2f& _frameDimensions, sf::Vector2f& _fr
 ,m_ball(BALL_RADIUS, BALL_XPOSITION, BALL_YPOSITION, BALL_XSPEED, BALL_YSPEED, _frameDimensions)
 ,m_bricks(_frameDimensions)
 ,m_pedal(PEDAL_HEIGHT, PEDAL_WIDTH, PEDAL_XPOSITION, PEDAL_YPOSITION)
-,m_score(sf::Vector2f(OFFSET_Y, 0))
+,m_score(sf::Vector2f(SCORE_OFFSET_Y, 0))
 ,m_frameDimensions(_frameDimensions)
 ,m_isEndOfTheGame(false)
 ,m_gameResult(m_ball, m_bricks, m_isEndOfTheGame, m_frameDimensions)

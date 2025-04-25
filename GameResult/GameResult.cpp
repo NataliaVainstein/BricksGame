@@ -28,7 +28,6 @@ void GameResult::draw(Frame& _frame)
     }
 }
 
-
 void GameResult::drawResult(Frame& _frame)
 {
     _frame.draw(&(this->m_resultText));
