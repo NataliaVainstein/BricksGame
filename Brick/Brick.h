@@ -11,7 +11,7 @@
 class Brick:public Drawable, public Collision, public sf::RectangleShape
 {
 public:
-	Brick(float _height, float _width, float _xpossition, float _ypossition);
+	Brick(float _height, float _width, float _xposition, float _yposition);
 	~Brick();
 	virtual void draw(Frame& _frame);
 
@@ -22,8 +22,8 @@ public:
 private:	
 	float m_height;
 	float m_width;
-	float m_xpossition;
-	float m_ypossition;
+	float m_xposition;
+	float m_yposition;
 };
 
 #endif //__BRICK__

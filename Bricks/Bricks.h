@@ -6,10 +6,9 @@
 #include <vector>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
+#include "GameEnding.h"
 
-
-
-class Bricks
+class Bricks: GameEnding
 {
 public:
 	Bricks(sf::Vector2f& _frameDimension);
@@ -24,6 +23,8 @@ public:
 	void draw(Frame& _frame);
 	void collide(Collision& _collideWith, Bricks::collideWithEnum _collideType, int& _points);
 	Brick* getBrick(size_t i);
+
+	bool isGameEnding(sf::Text& gameResultText);
 	
 private: 
 	Bricks(const Bricks&);
@@ -31,6 +32,7 @@ private:
 	void addBrick(char c, int _posX, int _posY);
 	
 private:
+	int m_breakableBricks;
 	std::vector<Brick*> m_shapes;
 };
 

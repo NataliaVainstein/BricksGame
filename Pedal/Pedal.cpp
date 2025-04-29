@@ -1,5 +1,12 @@
 #include "Pedal.h"
 
+constexpr float PEDAL_Y_OFFSET = 0.f;
+constexpr float PEDAL_DEFAULT_X_OFFSET = 0.f;
+constexpr float PEDAL_RIGHT_COLLISION_X_OFFSET = -1.f;
+constexpr float PEDAL_LEFT_COLLISION_X_OFFSET = 1.f;
+constexpr float RIGHT_KEY_PRESSED_X_OFFSET = 5.f;
+constexpr float LEFT_KEY_PRESSED_X_OFFSET = -5.f;
+
 Pedal::Pedal(float _height, float _width, float _xpossition, float _ypossition)
 :sf::RectangleShape (sf::Vector2f(_width, _height))
 ,m_height(_height)
@@ -18,8 +25,8 @@ Pedal::~Pedal()
 
 void Pedal::animate()
 {
-	move(m_xOffset, 0);
-	m_xOffset = 0;
+	move(m_xOffset, PEDAL_Y_OFFSET);
+	updateXOffset(PEDAL_DEFAULT_X_OFFSET);
 }
 
 void Pedal::draw(Frame& _frame)
@@ -52,19 +59,18 @@ Collision::COLLISION_TYPE Pedal::collide(Collision& _collideWith, int& _addPoint
 	
 	if((isRightCollision(thisPos.x, thisSize.x, collideWithPos.x)))
 	{
-		m_xOffset = -1;
-		//setPosition(collideWithPos.x - thisSize.x, thisPos.y);
+		updateXOffset(PEDAL_RIGHT_COLLISION_X_OFFSET);
 	
-		return X_DIRECTION;
+		return COLLISION;
 	}
 	
 	if(isLeftCollision(thisPos.x,collideWithPos.x, collideWithSize.x, thisSize.x))
 	{
-		m_xOffset = 1;
-		//setPosition(collideWithPos.x + collideWithSize.x, thisPos.y);
+		updateXOffset(PEDAL_LEFT_COLLISION_X_OFFSET);
 		
-		return X_DIRECTION;
+		return COLLISION;
 	}
+	
 	return NO_COLLISION;
 }
 
@@ -110,10 +116,10 @@ void Pedal::handleEvent(sf::Event _event)
 			switch(_event.key.code)
 			{
 				case sf::Keyboard::Right:
-					updateXOffset(5);
+					updateXOffset(RIGHT_KEY_PRESSED_X_OFFSET);
 					break;
 				case sf::Keyboard::Left:
-					updateXOffset(-5);
+					updateXOffset(LEFT_KEY_PRESSED_X_OFFSET);
 					break;
 				default:
 					break;
@@ -123,28 +129,3 @@ void Pedal::handleEvent(sf::Event _event)
 			break;
 	}
 }
-/*
-void Pedal::pollEvents(Frame& _frame)
-{			               
-   	sf::Event event; 
-   	
-	while (m_frame.pollEvent(event))
-	{
-				switch(event.key.code)
-				{
-					case sf::Keyboard::key::Right
-						m_pedal.move(sf::Vector2f(1, 0));
-						break;
-					case sf::Keyboard::key::Right
-						 m_pedal.move(sf::Vector2f(1, 0));
-						break;
-					default:
-						break;
-				}
-				break;
-			default:
-				break;
-		}
-	} 
-}
-*/

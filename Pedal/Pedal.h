@@ -15,7 +15,6 @@ public:
 	~Pedal();
 	void animate();
 	void draw(Frame& _frame);
-	//void pollEvents(Frame& _frame);
 	void updateXOffset(float _xOffset);
 	
 	COLLISION_TYPE collide(Collision& _collideWith, int& _addPoints);

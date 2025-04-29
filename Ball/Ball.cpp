@@ -1,18 +1,17 @@
 #include "Ball.h"
-#include <iostream> /*for test*/
 
-
-Ball::Ball(float _radius,float _xPossition,float _yPossition,float _xspeed,float _yspeed)
+Ball::Ball(float _radius,float _xPosition,float _yPosition,float _xspeed,float _yspeed, sf::Vector2f& _frameDimensions)
 :sf::CircleShape(_radius)
 ,m_radius(_radius)
-,m_xpossition(_xPossition)
-,m_ypossition(_yPossition)
+,m_xposition(_xPosition)
+,m_yposition(_yPosition)
 ,m_xspeed(_xspeed)
 ,m_yspeed(_yspeed)
 ,m_speed(_xspeed, _yspeed)
 ,m_squereSize(_radius * 2, _radius * 2)
+,m_frameDimensions(_frameDimensions)
 {
-	sf::Vector2f v(_xPossition, _yPossition);
+	sf::Vector2f v(_xPosition, _yPosition);
 	move(v);
     setFillColor(sf::Color::Yellow);
 }
@@ -21,12 +20,10 @@ Ball::~Ball()
 {
 }
 
-
 void Ball::animate()
 {	 
 	move(m_speed);
 }
-
 
 sf::Vector2f Ball::speed()
 {
@@ -71,17 +68,18 @@ Collision::COLLISION_TYPE Ball::collide(Collision&  _collideWith,  int& _addPoin
 	
 	if(colission)
 	{
-		if(_collideWith.collide(*this, _addPoints) != NO_COLLISION)
+		COLLISION_TYPE collitionResult = _collideWith.collide(*this, _addPoints);
+		if( collitionResult != NO_COLLISION)
 		{
 			m_speed.y *= yMultiplier;
 			m_speed.x *= xMultiplier;
-			
 		}
+
+		return collitionResult;
 	}
 	
 	return NO_COLLISION;
 }
-
 
 
 bool Ball::isRightLeftCollision(const sf::Vector2f& _collideWithPos, const sf::Vector2f& _collideWithSize, const sf::Vector2f& _thisPos, const sf::Vector2f& _thisSize)
@@ -147,3 +145,13 @@ bool Ball::isBetween(float _underTest, float _lesserBound, float _greaterBound)
 	return (_underTest >= _lesserBound) && (_underTest <= _greaterBound);
 }
 
+bool Ball::isGameEnding(sf::Text& gameResultText)
+{
+	if(getShapePosition().y > m_frameDimensions.y)
+	{
+		gameResultText.setString("Game Over");
+		return true;
+	}
+
+	return false;
+}

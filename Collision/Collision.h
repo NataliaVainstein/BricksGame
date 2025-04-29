@@ -9,8 +9,8 @@ class Collision
 public:
 	enum COLLISION_TYPE
 	{
-		X_DIRECTION,
-		Y_DIRECTION,
+		COLLISION_BREAKABLE_BRICKS,
+		COLLISION,
 		NO_COLLISION
 	};
 	

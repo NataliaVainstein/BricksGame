@@ -1,12 +1,11 @@
 #include "Bricks.h"
 #include "StableBrick.h"
-#include "MovebleBrick.h"
+#include "MovableBrick.h"
 #include "LevelLoader.h"
 #include <string>
 #include <vector>
-#include "Drawer.h"
 #include "Ball.h"
-
+#include "Collision.h"
 
 class Drawer
 {
@@ -26,36 +25,44 @@ private:
 class Collider
 {
 public:
-	Collider(Collision& _collideWith, int& _points)
+	Collider(Collision& _collideWith, int& _points, int& _breakableBricks)
 	:m_collideWith(_collideWith)
 	,m_points(_points)
+	,m_breakableBricks(_breakableBricks)
 	{
 	}
 	void operator()(Brick* _br)
 	{
-		m_collideWith.collide(*_br, m_points);
+		if (m_collideWith.collide(*_br, m_points) == Collision::COLLISION_BREAKABLE_BRICKS)
+		{
+			--m_breakableBricks;
+		}
+
 	}
 private:
 	Collision& m_collideWith;
 	int& m_points;
+	int& m_breakableBricks;
 };
 	
 
-static const float OFFSET  = 15.f;
-static const float H  = 10.f;
-static const float BRICK_HEIGHT = 40;
-static const float BRICK_WIDTH = 100;
+constexpr float OFFSET  = 15.f;
+constexpr float OFFSET_Y = 20.f;
+constexpr float BRICKS_INTERVAL  = 10.f;
+constexpr float BRICK_HEIGHT = 40.f;
+constexpr float BRICK_WIDTH = 100.f;
+constexpr float LEFT_STABLE_BRICK_Y_POSITION = 0.f;
+constexpr float RIGHT_STABLE_BRICK_Y_POSITION = 0.f;
+constexpr float TOP_STABLE_BRICK_X_POSITION = 0.f;
 
 Bricks::Bricks(sf::Vector2f& _frameDimension)
+:m_breakableBricks(0)
 {	
 
-	Brick*  brLeft = new StableBrick(_frameDimension.x + 100.f, 100, -100.f, 0.f);
-	Brick*  brRight = new StableBrick(_frameDimension.x + 100.f,100, 800 , 0.f);
-	Brick* brTop = new StableBrick(0.5, _frameDimension.y + 100.f, 0.f, 1);
+	Brick*  brLeft = new StableBrick(_frameDimension.x, BRICK_WIDTH, -BRICK_WIDTH, LEFT_STABLE_BRICK_Y_POSITION);
+	Brick*  brRight = new StableBrick(_frameDimension.x,BRICK_WIDTH, _frameDimension.y, RIGHT_STABLE_BRICK_Y_POSITION);
+	Brick* brTop = new StableBrick(BRICK_HEIGHT, _frameDimension.y, TOP_STABLE_BRICK_X_POSITION, -BRICK_HEIGHT);
 	
-	
-	
-	//m_shapes.push_back(brButtom);
 	m_shapes.push_back(brLeft);
 	m_shapes.push_back(brRight);
 	m_shapes.push_back(brTop);
@@ -66,7 +73,7 @@ Bricks::Bricks(sf::Vector2f& _frameDimension)
 	int numLine = 0; 
 	float posX = OFFSET;
 	bool readLineRes = true;
-	float posY = H + numLine * (H + BRICK_HEIGHT);
+	float posY = OFFSET_Y + BRICKS_INTERVAL + numLine * (BRICKS_INTERVAL + BRICK_HEIGHT);
 	 std::string brickLine;
 	
 	do{
@@ -81,19 +88,25 @@ Bricks::Bricks(sf::Vector2f& _frameDimension)
 					addBrick(*it, posX, posY);
 				}
 				
-				posX += BRICK_WIDTH + H;
+				posX += BRICK_WIDTH + BRICKS_INTERVAL;
 			}
 		}
 		
 		posX = OFFSET;
 		++numLine;
-		posY = H + numLine * (H + BRICK_HEIGHT);
+		posY = OFFSET_Y + BRICKS_INTERVAL + numLine * (BRICKS_INTERVAL + BRICK_HEIGHT);
 	}while(readLineRes);
 		
 }
 
 Bricks::~Bricks()
 {
+	for (Brick* brick : m_shapes)
+	{
+		delete brick;
+	}
+
+	m_shapes.clear();
 }
 
 void Bricks:: addBrick(char c, int _posX, int _posY)
@@ -102,7 +115,8 @@ void Bricks:: addBrick(char c, int _posX, int _posY)
 	
 	if(c == 'N')
 	{
-		b = new MovebleBrick(BRICK_HEIGHT, BRICK_WIDTH, _posX, _posY);
+		b = new MovableBrick(BRICK_HEIGHT, BRICK_WIDTH, _posX, _posY);
+		++m_breakableBricks;
 	}
 	if(c == 'S')
 	{
@@ -121,7 +135,7 @@ void Bricks::collide(Collision& _collideWith, Bricks::collideWithEnum _collideTy
 {
 	if(_collideType == _ALL_BRICKS)
 	{
-		std::for_each(m_shapes.begin(), m_shapes.end(), Collider(_collideWith, _points));
+		std::for_each(m_shapes.begin(), m_shapes.end(), Collider(_collideWith, _points, m_breakableBricks));
 	}
 	else
 	{
@@ -135,3 +149,13 @@ Brick* Bricks::getBrick(size_t i)
 	return m_shapes[i];
 }
 
+bool Bricks::isGameEnding(sf::Text& gameResultText)
+{
+	if (m_breakableBricks == 0)
+	{
+		gameResultText.setString("It's a win!");
+		return true;
+	}
+
+	return false;
+}

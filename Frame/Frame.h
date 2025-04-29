@@ -4,7 +4,6 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <vector>
-//#include "Ball.h"
 
 class Frame 
 {
@@ -27,8 +26,7 @@ public:
 private:
 	Frame(const Frame& _frame);
 	Frame& operator=(const Frame&); 
-	float height() const;
-	float width() const;
+	
 private:
 	const sf::Vector2f m_frameDimensions;
 	sf::RenderWindow m_frame;

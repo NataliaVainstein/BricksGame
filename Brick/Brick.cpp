@@ -1,14 +1,14 @@
 #include "Brick.h"
 
-Brick::Brick(float _height,	float _width, float _xpossition, float _ypossition)
+Brick::Brick(float _height,	float _width, float _xposition, float _yposition)
 :sf::RectangleShape (sf::Vector2f(_width, _height))
 ,m_height(_height)
 ,m_width(_width)
-,m_xpossition(_xpossition)
-,m_ypossition(_ypossition)
+,m_xposition(_xposition)
+,m_yposition(_yposition)
 {
 	
-    sf::Transformable::setPosition(_xpossition, _ypossition);
+    sf::Transformable::setPosition(_xposition, _yposition);
 }
 
 Brick:: ~Brick()
@@ -19,13 +19,6 @@ Brick:: ~Brick()
 void Brick::draw(Frame& _frame)
 {
 	_frame.draw(this);
-}
-
-
-
-Collision::COLLISION_TYPE Brick::collide(Collision& _collideWith, int& _addPoints)
-{
-	return NO_COLLISION; //TODO
 }
 
 const sf::Vector2f& Brick::getShapePosition() const
