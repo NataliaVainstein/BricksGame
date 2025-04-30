@@ -16,7 +16,7 @@ Pedal::Pedal(float _height, float _width, float _xpossition, float _ypossition)
 ,m_xOffset(0)
 {
 	setPosition(_xpossition, _ypossition);
-    setFillColor(sf::Color::Black);
+    setFillColor(sf::Color::Green);
 }
 
 Pedal::~Pedal()

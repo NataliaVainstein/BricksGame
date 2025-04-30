@@ -13,7 +13,7 @@ Ball::Ball(float _radius,float _xPosition,float _yPosition,float _xspeed,float _
 {
 	sf::Vector2f v(_xPosition, _yPosition);
 	move(v);
-    setFillColor(sf::Color::Yellow);
+    setFillColor(sf::Color::Red);
 }
 
 Ball::~Ball()
