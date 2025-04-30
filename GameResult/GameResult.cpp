@@ -12,7 +12,7 @@ GameResult::GameResult(Ball& _ball, Bricks& _bricks, bool& _isEndOfTheGame, sf::
 {
     m_font.loadFromFile("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf");
     m_resultText.setCharacterSize(TEXT_SIZE);
-	m_resultText.setFillColor(sf::Color::Black);
+	m_resultText.setFillColor(sf::Color::Green);
 }
 
 GameResult::~GameResult()

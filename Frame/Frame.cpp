@@ -25,7 +25,7 @@ bool Frame::isOpen()
 
 void Frame::clear()
 {
-	m_frame.clear(sf::Color::Green);
+	m_frame.clear(sf::Color::Blue);
 }
 
 void Frame::display()
