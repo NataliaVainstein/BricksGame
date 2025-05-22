@@ -4,7 +4,7 @@ This implementation of the **Breaking Bricks** game was developed on a **Linux**
 
 ---
 
-## 🎮 Game Rules
+## Game Rules
 
 **Breaking Bricks** is a classic arcade-style game where the player uses a paddle to keep a bouncing ball in play and destroy bricks on the screen.
 
@@ -12,8 +12,8 @@ This implementation of the **Breaking Bricks** game was developed on a **Linux**
 Break all the **Breakable Bricks** by bouncing the ball off the paddle.
 
 **The game ends when:**
-- ✅ You **win** by destroying all Breakable Bricks.
-- ❌ You **lose** if the ball falls below the paddle.
+- You **win** by destroying all Breakable Bricks.
+- You **lose** if the ball falls below the paddle.
 
 ---
 
@@ -29,8 +29,8 @@ Break all the **Breakable Bricks** by bouncing the ball off the paddle.
 
 ### Scoring
 
-- 🧱 Each breakable brick destroyed awards **10 points**.
-- 🏆 The final score is the total number of points earned by breaking bricks.
+- Each breakable brick destroyed awards **10 points**.
+- The final score is the total number of points earned by breaking bricks.
 
 ---
 
@@ -43,7 +43,7 @@ Break all the **Breakable Bricks** by bouncing the ball off the paddle.
 ![Game Screenshot](ScreenshotBricksGame.png)
 ---
 
-## ✅ Setup and Run the Game
+## Setup and Run the Game
 
 Follow the steps below to build and run the Breaking Bricks game:
 
@@ -63,4 +63,4 @@ make
 
 ---
 
-**🎉 Enjoy the game!**
+**Enjoy the game!**
