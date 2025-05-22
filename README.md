@@ -40,6 +40,8 @@ Break all the **Breakable Bricks** by bouncing the ball off the paddle.
 - Keep the ball in play by bouncing it off the paddle.
 
 ---
+![Game Screenshot](ScreenshotBricksGame.png)
+---
 
 ## ✅ Setup and Run the Game
 
